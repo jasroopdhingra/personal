@@ -72,15 +72,20 @@ if (photoCycle) {
 }
 
 if (!reduceMotion && window.innerWidth > 900) {
-  const colors = ['#c09090', '#bc8572', '#8b9aae'];
+  const colors = ['#c09090', '#bc8572', '#8b9aae', '#d4c5b9'];
+  let lastX = 0, lastY = 0;
   window.addEventListener('mousemove', (e) => {
+    const dx = e.clientX - lastX, dy = e.clientY - lastY;
+    if (Math.sqrt(dx*dx + dy*dy) < 10) return;
+    lastX = e.clientX; lastY = e.clientY;
     const particle = document.createElement('span');
     particle.className = 'cursor-particle';
     particle.style.left = `${e.clientX}px`;
     particle.style.top = `${e.clientY}px`;
-    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.color = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.borderColor = colors[Math.floor(Math.random() * colors.length)];
     document.body.appendChild(particle);
-    setTimeout(() => particle.remove(), 1000);
+    setTimeout(() => particle.remove(), 1200);
   });
 }
 

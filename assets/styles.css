@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,500;1,600&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=Inter:wght@300;400;500&family=Josefin+Sans:wght@100;300&family=Playfair+Display:ital,wght@1,400;1,500;1,600&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
   --bg-dark: #1c1c1e;
@@ -65,7 +65,7 @@ body.designer-mode::after {
 
 header { border-bottom: 1px solid rgba(212,197,185,0.2); margin-bottom: var(--spacing-6); }
 nav { display:flex; flex-wrap: wrap; justify-content: space-between; align-items:center; gap: var(--spacing-3); padding-bottom: var(--spacing-3); }
-.logo { font-family:'Space Mono', monospace; letter-spacing:0.08em; text-transform: uppercase; }
+.logo { font-family:'Josefin Sans', sans-serif; font-weight: 100; letter-spacing: 0.28em; text-transform: uppercase; font-size: 0.95rem; }
 .nav-links { display:flex; flex-wrap: wrap; gap: var(--spacing-3); }
 a { color: var(--text-primary); text-decoration: none; position: relative; }
 a::after {
@@ -202,10 +202,16 @@ h3 { font-size: clamp(1.75rem, 4vw, 32px); }
 .photo-cycle .ghost { position:absolute; inset:0; opacity:0; pointer-events:none; }
 
 .cursor-particle {
-  position: fixed; width: 9px; height:9px; border-radius:50%; pointer-events:none; z-index: 100;
-  animation: particle-fade 1s ease forwards;
+  position: fixed; width: 7px; height: 7px; pointer-events: none; z-index: 100;
+  transform: rotate(45deg);
+  animation: particle-fade 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  border: 1px solid currentColor;
+  background: transparent;
 }
-@keyframes particle-fade { to { transform: translateY(-18px) scale(0.2); opacity:0; } }
+@keyframes particle-fade {
+  0%   { opacity: 0.9; transform: rotate(45deg) scale(1) translateY(0); }
+  100% { opacity: 0; transform: rotate(45deg) scale(0.1) translateY(-22px); }
+}
 
 .reveal { opacity:0; transform: translateY(18px); transition: all .6s ease; }
 .reveal.show { opacity:1; transform: translateY(0); }
